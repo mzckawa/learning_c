@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/sierra/learning_c/10.05.2025/question1'
+relocations:     []
+...
