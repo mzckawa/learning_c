@@ -67,8 +67,10 @@ int main(){
 
     int qtd_validos = ContarLugares(array_nomes, array_notas, qtd_lugares); 
     
+    printf("Temos %d lugares pra visitar!\n", qtd_validos);
+
     if (qtd_validos){
-        printf("Temos %d lugares pra visitar!\n", qtd_validos);
+
         // se temos lugares visitáveis, vejamos qual será visitado primeiro
 
        int melhor_ind = AvaliarArrays(array_nomes, array_notas, qtd_lugares);
@@ -85,3 +87,5 @@ int main(){
     
     return 0;
 }
+
+// sucessfully submitted, thanks God!!
