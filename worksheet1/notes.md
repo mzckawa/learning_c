@@ -43,3 +43,8 @@ When a pointer is assigned to another pointer, they start to point to the same m
 ### October 7th, 2025
 
 %2.f is different from &.2f! 
+When inputing values, C recognizes 01 as the same as the integer 1, but, when assigning values to variables, C understands that 01 is an octal number and 1 is a decimal number. For this reason, we can't assign 08 to a variable, for example, because it isn't an octal number. 
+
+To print %, you need to write %% :)
+
+%.f will print no numbers after the comma, but %f will! 

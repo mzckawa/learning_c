@@ -81,12 +81,17 @@ int main(){
     int i = 0;
 
     // para ler os inputs vindos de uma linha só, vamos usar um laço que verifica se ainda é possível ler um novo valor
-
     while (scanf("%f", &array_valores[i]) == 1){
         i++;
     }
 
+    if (N<3){
+    printf("Numero de notas insuficiente.");
+    }
+
+    else{
     printf("%.2f", MediaFinal(array_valores, N));
+    }
     
     return 0;
 }
