@@ -7,7 +7,7 @@ int main(){
 
     char letra;
 
-    scan("%c",&letra);
+    scanf("%c", &letra);
 
     switch(letra){
 
@@ -16,51 +16,51 @@ int main(){
         break;
 
         case 'B':
-        printf("%c", ".A.\nABA");
+        printf("%s", ".A.\nABA");
         break;
 
         case 'C':
-        printf("%c", "..A..\n.ABA.\nABCBA");
+        printf("%s", "..A..\n.ABA.\nABCBA");
         break;
 
         case 'D':
-        printf("%c", "...A...\n..ABA..\n.ABCBA.\nABCDCBA");
+        printf("%s", "...A...\n..ABA..\n.ABCBA.\nABCDCBA");
         break;
 
         case 'E':
-        printf("%c", "....A....\n...ABA...\n..ABCBA..\n.ABCDCBA.\nABCDEDCBA");
+        printf("%s", "....A....\n...ABA...\n..ABCBA..\n.ABCDCBA.\nABCDEDCBA");
         break;
 
         case 'F':
-        printf("%c", "A");
+        printf("%s", ".....A.....\n....ABA....\n...ABCBA...\n..ABCDCBA..\n.ABCDEDCBA.\nABCDEFEDCAB");
         break;
 
         case 'G':
-        printf("%c", "A");
+        printf("%s", "......A......\n.....ABA.....\n....ABCBA....\n...ABCDCBA...\n..ABCDEDCBA..\n.ABCDEFEDCAB.\nABCDEFGFEDCBA");
         break;
 
         case 'H':
-        printf("%c", "A");
+        printf("%s", ".......A.......\n......ABA......\n.....ABCBA.....\n....ABCDCBA....\n...ABCDEDCBA...\n..ABCDEFEDCAB..\n.ABCDEFGFEDCBA.\nABCDEFGHGFEDCBA");
         break;
 
         case 'I':
-        printf("%c", "A");
+        printf("%s", "........A........\n.......ABA.......\n......ABCBA......\n.....ABCDCBA.....\n....ABCDEDCBA....\n...ABCDEFEDCAB...\n..ABCDEFGFEDCBA..\n.ABCDEFGHGFEDCBA.\nABCDEFGHIHGFEDCBA");
         break;
 
         case 'J':
-        printf("%c", "A");
+        printf("%s", ".........A.........\n........ABA........\n.......ABCBA.......\n......ABCDCBA......\n.....ABCDEDCBA.....\n....ABCDEFEDCAB....\n...ABCDEFGFEDCBA...\n..ABCDEFGHGFEDCBA..\n.ABCDEFGHIHGFEDCBA.\nABCDEFGHIJIHGFEDCBA");
         break;
 
         case 'K':
-        printf("%c", "A");
+        printf("%s", "..........A..........\n.........ABA.........\n........ABCBA........\n.......ABCDCBA.......\n......ABCDEDCBA......\n.....ABCDEFEDCAB.....\n....ABCDEFGFEDCBA....\n...ABCDEFGHGFEDCBA...\n..ABCDEFGHIHGFEDCBA..\n.ABCDEFGHIJIHGFEDCBA.\nABCDEFGHIJKJIHGFEDCBA");
         break;
 
         case 'L':
-        printf("%c", "A");
+        printf("%s", "...........A...........\n..........ABA..........\n.........ABCBA.........\n........ABCDCBA........\n.......ABCDEDCBA.......\n......ABCDEFEDCAB......\n.....ABCDEFGFEDCBA.....\n....ABCDEFGHGFEDCBA....\n...ABCDEFGHIHGFEDCBA...\n..ABCDEFGHIJIHGFEDCBA..\n.ABCDEFGHIJKJIHGFEDCBA.\nABCDEFGHIJKLKJIHGFEDCBA");
         break;
 
         case 'M':
-        printf("%c", "A");
+        printf("%s", "............A............\n...........ABA...........\n..........ABCBA..........\n.........ABCDCBA.........\n........ABCDEDCBA........\n.......ABCDEFEDCAB.......\n......ABCDEFGFEDCBA......\n.....ABCDEFGHGFEDCBA.....\n....ABCDEFGHIHGFEDCBA....\n...ABCDEFGHIJIHGFEDCBA...\n..ABCDEFGHIJKJIHGFEDCBA..\n.ABCDEFGHIJKLKJIHGFEDCBA.\nABCDEFGHIJKLMLKJIHGFECBA");
         break;
 
         case 'N':
@@ -115,15 +115,9 @@ int main(){
         printf("%c", "A");
         break;
 
-
-
-
-
-
     }
     return 0;
 }
 
 
 
-ABCDEDCBA
