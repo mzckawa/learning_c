@@ -20,7 +20,7 @@ void Decripto(char palavra[51], int tam_palav, int key){
                 novo_idx = i - recuo_cripto;
 
                 if (novo_idx < 0){
-                    palavra[j] = array_alfab[53+novo_idx]; // ex: se novo_idx == -1, vai para array_alfab[53-1] = array_alfab[52]
+                    palavra[j] = array_alfab[52+novo_idx]; // ex: se novo_idx == -1, vai para array_alfab[52-1] = array_alfab[51], que é o último índice de array_alfab
                 }
 
                 else{

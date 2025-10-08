@@ -48,3 +48,7 @@ When inputing values, C recognizes 01 as the same as the integer 1, but, when as
 To print %, you need to write %% :)
 
 %.f will print no numbers after the comma, but %f will! 
+
+### October 8th, 2025
+
+Scanf doesn't return a string, but a number (1 if it actually reads something and -1 if it reaches EOF).

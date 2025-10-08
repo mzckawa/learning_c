@@ -59,15 +59,15 @@ void Sorte(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2){
 
     // printando a mensagem adicional
     if(res < 30){
-    printf("Nem jogue moedas pra cima hoje.\n");
+    printf("Nem jogue moedas pra cima hoje. Sem tigrinho nem jogos de azar, por favor!\n");
     }
 
     else if (res >= 30 && res <= 50){
-    printf("Melhor nao arriscar.\n");
+    printf("Melhor nao arriscar. Sem tigrinho nem jogos de azar, por favor!\n");
     }
 
     else if (res >= 51 && res <= 79){
-    printf("Por sua conta em risco.\n");
+    printf("Por sua conta em risco. Sem tigrinho nem jogos de azar, por favor!\n");
     }
 
     else if (res >= 80 && res <= 90){
