@@ -28,7 +28,7 @@ strncat(str1, str2, x) concatenates the first x characters of str2 to str1
 ### October 6th, 2025
 
 Functions in C can only return one value at a time. 
-Moreover, if you make a function that modifies arrays and the pointers to these arrays are passed as arguments, you don't need to return anything - the original arrays will be modified automatically. 
+Moreover, if you make a function that modifies arrays and the pointers to these arrays are passed as arguments, you don't need to return anything - the original arrays will be modified automatically. When you pass an array as a function's argument, you are actually passing the memory address to the first element of the array.
 
 When you declare a multidimensional array as a function's parameter, the first dimension doesn't need to be specified, but all the other dimensions do. If it is a local variable, though, you need to specify the first dimension as well.
 
@@ -52,3 +52,9 @@ To print %, you need to write %% :)
 ### October 8th, 2025
 
 Scanf doesn't return a string, but a number (1 if it actually reads something and -1 if it reaches EOF).
+
+### October 10th, 2025
+
+Updates on October 7th's notes. 
+Be careful when dealing with pointers. If you forget to put * before the pointer, you will end up changing the memory address, not the value located at this address!
+
