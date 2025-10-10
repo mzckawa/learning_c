@@ -58,3 +58,17 @@ Scanf doesn't return a string, but a number (1 if it actually reads something an
 Updates on October 7th's notes. 
 Be careful when dealing with pointers. If you forget to put * before the pointer, you will end up changing the memory address, not the value located at this address!
 
+Malloc -> allocates memory; returns the address found - if it doesn't find any memory space available, it returns "null"
+Calloc -> malloc() + memset() - allocates and initizalizes 
+Realloc -> reallocates memory; it brings the dynamicity to memory allocation
+Free -> to free up space in the allocated memory (it targets the "head" of the vector). Don't forget about it! 
+
+Good practices:
+
+- use "free" whenerver there is dynamic allocation
+- verify all allocations and reallocations 
+- use auxiliary pointer to reallocaye 
+- declare pointer as null
+
+
+
