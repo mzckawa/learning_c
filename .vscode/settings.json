@@ -2,6 +2,8 @@
     "files.associations": {
         "classcodes": "c",
         "math.h": "c",
-        "05112025": "c"
+        "05112025": "c",
+        "stdio.h": "c",
+        "string.h": "c"
     }
 }
