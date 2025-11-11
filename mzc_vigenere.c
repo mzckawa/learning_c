@@ -3,20 +3,10 @@
 #include <ctype.h>
 #include <string.h>
 
-int is_prime(int num){
-
-    for(int i = 2; i<num; i++){ // because of this condition, i will not be neither 1 nor num 
-        if(num % i == 0){
-            return 0;
-        }
-    }
-    return 1; // it will only reach this line if all of the divisions by numbers different than 1 and itself are not exact  
-}
-
 int main(){
 
     int pre_chave;
-    int qtd_fatores = 0; // that is, the criptography key
+    int chave = 0; // that is, the number of factors
     char string_buffer[1024];
     char alfabeto1[27] = "abcdefghijklmnopqrstuvwxyz";
     char alfabeto2[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -41,27 +31,41 @@ int main(){
         //printf("%s", message); // debugging print
     }
 
-    int pre_chave_orig = pre_chave;
-
     // obtaining pre_chave's prime factors
-    for(int i=pre_chave; i>1; i--){
+    // first, obtaining all the 2 factors (since 2 is the only even prime)
 
-        if(is_prime(i) == 1){ // we found a prime that is smaller than or equal to pre_chave! 
-
-            while(pre_chave%i == 0){
-            
-                pre_chave = pre_chave/i;
-                qtd_fatores++;
-
-            }
-        }
+    if(pre_chave == 0){
+        chave=0;
     }
 
+    else{
 
-    for(int i=0; i<strlen(message); i++){ // verifying whether there is any letter in the received message
+    while(pre_chave%2 == 0){
+        chave++;
+        pre_chave /= 2;
+    }
+
+    for(long long i=3; i*i<=pre_chave; i+=2){ // testing all the odd numbers equal or smaller than the square root of pre_chave; long long to prevent integer overflow
+
+        while(pre_chave%i == 0){
+        
+            pre_chave = pre_chave/i;
+            chave++;
+
+        }
+        
+    }
+
+    if(pre_chave>2){
+        chave++; // if, after all the loops above, pre_chave is still greater than two, then pre_chave is necessarily a prime number (bigger than the square root of pre_chave)
+    }
+    }
+
+    for(int i=0; message[i] != '\0'; i++){ // verifying whether there is any letter in the received message
 
         if(isalpha(message[i])){
             verif_letter = 1;
+            break;
         }
     }
 
@@ -76,13 +80,13 @@ int main(){
 
                 if(alfabeto1[j] == message[i]){
 
-                    message[i] = alfabeto1[(j + qtd_fatores + qtd_letras) % 26]; // the change in i is already a arithmetic progression whose common difference is 1 
+                    message[i] = alfabeto1[(j + chave + qtd_letras) % 26]; // the change in i is already a arithmetic progression whose common difference is 1 
                     qtd_letras++;
                     break; // to stop the for loop as soon as message[i] is replaced
                 }
 
                 else if(alfabeto2[j] == message[i]){
-                    message[i] = alfabeto2[(j + qtd_fatores + qtd_letras) % 26]; 
+                    message[i] = alfabeto2[(j + chave + qtd_letras) % 26]; 
                     qtd_letras++;
                     break; 
                 }
@@ -93,17 +97,8 @@ int main(){
 
     // printing the key and the enctrypted message 
 
-    printf("%d\n", qtd_fatores);
+    printf("%d\n", chave);
     printf("%s", message);
-    
-
-
-    // debugging prints below 
-    // printf("Os %d valores encontrados na fatoração de %d foram: ", qtd_fatores, pre_chave_orig);
-    // for(int i = 0; i<qtd_fatores; i++){
-    //     printf("%d ", fatores_pre_chave[i]);
-    // }
-    // printf("\n");
 
 free(message);
 
