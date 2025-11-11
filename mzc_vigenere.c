@@ -34,7 +34,7 @@ int main(){
     // obtaining pre_chave's prime factors
     // first, obtaining all the 2 factors (since 2 is the only even prime)
 
-    if(pre_chave == 0){
+    if(pre_chave <= 0){
         chave=0;
     }
 
