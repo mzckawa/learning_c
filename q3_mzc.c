@@ -10,6 +10,7 @@ int main(){
     char string_buffer[1024]; // creating an array that will be used as a place to temporarily store the information received (buffer)
 
     printf("Para encerrar o programa, basta mandar um sinal de EOF para o terminal. No Linux/MacOS, esse sinal é mandado pelo atalho ctrl+D. Pelo Windows, é ctrl+Z. Divirta-se!\n");
+    printf("\n");
     while(scanf(" %s", string_buffer) == 1){
 
         total_of_strings++;
@@ -17,7 +18,9 @@ int main(){
         // checking whether we have reached the size limit 
         if(curr_size <= total_of_strings){
 
+            printf("\n");
             printf("Limite do espaço atingido. Vamos fazer realocação de memória.\n");
+            printf("\n");
             curr_size *= 2;
             
             char **array_string_aux = realloc(array_strings, curr_size * sizeof(char*));
@@ -26,7 +29,9 @@ int main(){
 
             if (array_string_aux == NULL){
 
+                printf("\n");
                 printf("Realocação falhou! Vamos liberar a memória que já fora preenchida e encerrar o programa.\n");
+                printf("\n");
 
                 for(int i=0; i<(total_of_strings-1); i++){
                     free(array_strings[i]); // freeing the string individually
@@ -46,7 +51,10 @@ int main(){
             char *new_string = malloc(strlen(string_buffer) + 1); 
 
             if(new_string == NULL){
+
+                printf("\n");
                 printf("Alocação de memória falhou!");
+                printf("\n");
 
                 for(int i=0; i<(total_of_strings-1); i++){
                     free(array_strings[i]); 
@@ -67,12 +75,15 @@ int main(){
 
     // printing each stored string 
 
+    printf("\n");
     printf("Loop concluído! As strings recebidas foram:\n");
+    printf("\n");
 
     for(int i=0; i<total_of_strings; i++){
         printf("%s\n", array_strings[i]); 
     }
 
+    printf("\n");
     printf("Encerrando o programa, vamos liberar o espaço!\n");
 
     for(int i=0; i<total_of_strings; i++){
