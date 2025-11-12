@@ -2,35 +2,41 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct DadosCombatente{
+    int amp;
+    int freq;
+    float ener;
+    char str_periodico[6];
+    int pts;
+    int *pontuacoes;
+
+} Combatente;
+
+typedef Combatente cremosa;
+typedef Combatente inimigo;
+
 int main(){
 
-    int amp_crem;
-    int freq_crem;
-    float ener_crem;
-    char str_periodico_crem[6];
-    int e_periodico_crem;
-    int amp_inim;
-    int freq_inim;
-    float ener_inim;
-    char str_periodico_inim[6];
+    cremosa cremosa;
+    inimigo inimigo;
     int capacidade = 5;
     int qtd_inim = 0;
-    int pts_crem = 0;
-    int pts_inim = 0;
-    int *pontuacoes_inim = malloc(capacidade * sizeof(int));
-    int *pontuacoes_crem = malloc(capacidade * sizeof(int));
+
+    cremosa.pontuacoes = malloc(capacidade * sizeof(int));
+    inimigo.pontuacoes = malloc(capacidade * sizeof(int));
+
     char *vencedor = malloc(capacidade * sizeof(char));
 
-    // checking the success of the memory allocation for pontuacoes_inim and pontuacoes_crem
+    // checking the success of the memory allocation for inimigo.pontuacoes and cremosa.pontuacoes
 
-    if(pontuacoes_inim == NULL){
+    if(inimigo.pontuacoes == NULL){
 
         printf("Falha na alocação de memória para o array de armazenamento das pontuações dos inimigos. O programa será encerrado.\n");
         exit(1);
 
     }
 
-    if(pontuacoes_crem == NULL){
+    if(cremosa.pontuacoes == NULL){
 
         printf("Falha na alocação de memória para o array de armazenamento das pontuações da Princesa Cremosa. O programa será encerrado.\n");
         exit(1);
@@ -45,80 +51,80 @@ int main(){
     }
 
     // reading Princesa Cremosa's info
-    scanf(" %d %d %f %s", &amp_crem, &freq_crem, &ener_crem, str_periodico_crem);
+    scanf(" %d %d %f %s", cremosa.amp, cremosa.ener, cremosa.freq, cremosa.str_periodico);
 
     // reading the enemies' info until EOF
-    while(scanf(" %d %d %f %s", &amp_inim, &freq_inim, &ener_inim, str_periodico_inim) != EOF){
+    while(scanf(" %d %d %f %s", inimigo.amp, inimigo.ener, inimigo.freq, inimigo.str_periodico) != EOF){
 
-        pts_crem = 0;
-        pts_inim = 0;
+        cremosa.pts = 0;
+        inimigo.pts = 0;
 
         // allocating more memory to store the points of each enemy 
 
-        if((qtd_inim + 1 ) == capacidade){
+        if((qtd_inim + 1) == capacidade){
 
             capacidade *= 2;
-            int *lista_aux = realloc(pontuacoes_inim, capacidade * sizeof(int));
+            int *lista_aux = realloc(inimigo.pontuacoes, capacidade * sizeof(int));
 
             if(lista_aux == NULL){
 
                 printf("Falha na realocação da lista de pontuações. Todos os ponteiros serão liberados e o programa será encerrado.\n");
-                free(pontuacoes_inim);
+                free(inimigo.pontuacoes);
                 exit(1);
             }
 
             else{
-                pontuacoes_inim = lista_aux;
+                inimigo.pontuacoes = lista_aux;
             }
         }
 
         // comparing the amplitudes
 
-        if(amp_crem > amp_inim){
-            pts_crem++;
+        if(cremosa.amp > inimigo.amp){
+            cremosa.pts++;
         }
 
-        else if(amp_inim > amp_crem){
-            pts_inim++;
+        else if(inimigo.amp > cremosa.amp){
+            inimigo.pts++;
         }
 
         // comparing the frequencies
 
-        if(freq_crem == freq_inim){
-            pts_crem++;
-            pts_inim++;
+        if(cremosa.freq == inimigo.freq){
+            cremosa.pts++;
+            inimigo.pts++;
         }
 
-        else if(freq_crem % freq_inim == 0){
-            pts_crem++;
+        else if(cremosa.freq % inimigo.freq == 0){
+            cremosa.pts++;
         }
 
-        else if(freq_inim % freq_crem == 0){
-            pts_inim++;
+        else if(inimigo.freq % cremosa.freq == 0){
+            inimigo.pts++;
         }
 
         // comparing the energies
 
-        if(ener_crem > ener_inim){
-            pts_crem++;
+        if(cremosa.ener > inimigo.ener){
+            cremosa.pts++;
         }
 
-        else if(ener_inim > ener_crem){
-            pts_inim++;
+        else if(inimigo.ener > cremosa.ener){
+            inimigo.pts++;
         }
 
-        if(strcmp(str_periodico_crem, "TRUE") == 0 && strcmp(str_periodico_inim, "FALSE") == 0){
-            pts_crem++;
+        if(strcmp(cremosa.str_periodico, "TRUE") == 0 && strcmp(inimigo.str_periodico, "FALSE") == 0){
+            cremosa.pts++;
         }
 
-        else if(strcmp(str_periodico_inim, "TRUE") == 0 && strcmp(str_periodico_crem, "FALSE") == 0){
-            pts_inim++;
+        else if(strcmp(inimigo.str_periodico, "TRUE") == 0 && strcmp(cremosa.str_periodico, "FALSE") == 0){
+            inimigo.pts++;
         }
 
-        pontuacoes_crem[qtd_inim] = pts_crem;
-        pontuacoes_inim[qtd_inim] = pts_inim;
+        cremosa.pontuacoes[qtd_inim] = cremosa.pts;
+        inimigo.pontuacoes[qtd_inim] = inimigo.pts;
 
-        if(pontuacoes_crem[qtd_inim] > pontuacoes_inim[qtd_inim]){
+        if(cremosa.pontuacoes[qtd_inim] > inimigo.pontuacoes[qtd_inim]){
             vencedor[qtd_inim] = 'c';
         }
 
@@ -135,7 +141,7 @@ int main(){
     // for(int i = 0; i < qtd_inim; i++){
 
     //     printf("Pontuações Cremosa: ");
-    //     printf("%d ", pontuacoes_crem[i]);
+    //     printf("%d ", cremosa.pontuacoes[i]);
     //     printf("\n");
 
     // }
@@ -143,7 +149,7 @@ int main(){
     // for(int i = 0; i < qtd_inim; i++){
 
     //     printf("Pontuações inimigos: ");
-    //     printf("%d ", pontuacoes_inim[i]);
+    //     printf("%d ", inimigo.pontuacoes[i]);
     //     printf("\n");
     // }
 
@@ -154,7 +160,7 @@ int main(){
     //     printf("\n");
     // }
 
-    free(pontuacoes_inim);
+    free(inimigo.pontuacoes);
 
     return 0;
 }
