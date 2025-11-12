@@ -1,0 +1,360 @@
+ #include <stdio.h>
+ #include <string.h> // to be able to compare something with a string 
+ #include <stdlib.h> // to be able to dynamically allocate memory
+
+
+// /*
+//  int main(){
+//     FILE *arq; 
+//     arq = fopen("classe.txt", "w"); // w is for writing, a is for appending; never use "wa"
+//     if(arq != NULL){ // always check whether the memory allocation worked out
+//         fprintf(arq, "Oi!\n"); // when dealing with files, you add "f" before the usual name of the command, and add the name of the pointer to the file as the first argument
+//         fclose(arq); // as important as  freeing the memory!!
+//     }
+//     return 0;
+//  }
+
+
+//  int main(){
+//     FILE *arq;
+//     char linha[100]; 
+//     arq = fopen("classe.txt", "a");
+//     if(arq != NULL){
+//         fgets(linha, 100, arq);
+//         fprintf("Li %s\n", linha);
+//         fclose(arq);
+//     }
+//  }
+
+//  int main(){
+//     FILE *arq;
+//     char linha[100]; // consider whether you have enough space for the array! 
+//     arq = fopen("classe.txt", "a");
+//     if(arq != NULL){
+//         fgets(linha, 100, arq);
+//         fprintf("Li %s\n", linha);
+//         fclose(arq);
+//     }
+//  }
+
+
+//  int main(){
+//     FILE *arq;
+//     char linha[100]; 
+//     arq = fopen("classe.txt", "a");
+//     if(arq != NULL){
+//         fgets(linha, 100, arq);
+//         fprintf("Li %s\n", linha);
+//         fclose(arq);
+//     }
+//  }
+
+//  // you need to imagine the pointers moving all the way from the beginning to the end of the vector 
+
+//   int main(){
+//     FILE *arq;
+//     char linha[100]; 
+//     arq = fopen("classe.txt", "r+"); // r+ = read, and also append ; a+ = append, and also read
+//     if(arq != NULL){
+//         fscanf(arq, "%28[^p]", linha); // the "28" here indicates that this scanset will read, at most, 28 characters 
+//         fgets(linha, 100, arq);
+//         printf("Li %s\n", linha);
+//         fprintf(arq, "volts");
+//         fclose(arq);
+//         }
+//     }
+
+//  // reading a string backwards has a risk of memory invasion
+
+// fseek(FILE *stream, long int offset, int whence); // fseek works as a way to "teleport" to the desired index of the array 
+
+
+// whence:
+// 1) SEEK_SET
+// 2) SEEK_CUR (current)
+// 3) SEEK_END
+
+
+// int main(){
+//     FILE *arq;
+//     char linha[100]; 
+//     arq = fopen("classe.txt", "r+"); // r+ = read, and also append ; a+ = append, and also read; it's in this line that the first position of the "clyinder head" is defined 
+//     if(arq != NULL){
+//         fseek(arq, 28, SEEK_SET);
+//         fprintf(arq, "volts");
+//         fclose(arq);
+//         }
+//     }
+
+// */
+
+// typedef struct{
+//         char nome[100];
+//         int idade;
+//     } Aluno;
+
+// // attendance list: first solution
+// int main(){
+
+//     FILE *arq;
+//     Aluno aluno;
+//     arq = fopen("attendance.txt", "w"); // we could also use "wt" to express that it is a text file, but it is merely documental, an information you add so that other people understand your code better
+//     if(arq != NULL){
+
+//         scanf(" %99[^\n]", aluno.nome);
+//         while(strcmp(aluno.nome, "fim")){ // you could also write "strcmp(aluno.nome, "fim") != 0"
+//             scanf("%d", &aluno.idade);
+//             fprintf(arq, "%s, %d\n", aluno.nome, aluno.idade);
+//             scanf(" %99[^\n]", aluno.nome);
+//         fclose(arq);
+//     }
+    
+
+// }
+
+// // ftell(FILE *stream) -> returns the current position of pointer inside the file 
+
+// // attendance list: second solution
+// int main(){
+
+//     FILE *arq;
+//     Aluno aluno;
+//     arq = fopen("attendance.txt", "w"); // we could also use "wt" to express that it is a text file, but it is merely documental, an information you add so that other people understand your code better
+//     if(arq != NULL){
+
+//         while(fscanf(arq, " %99[^,],%d\n", aluno.nome, &aluno.idade) != EOF){ 
+//             prinf(" %s,%d\n", aluno.nome, aluno.idade);
+//         fclose(arq);
+//         }
+//     } 
+// }
+
+// // introduction to binary files! 
+
+// int main(){
+//     FILE *arq;
+//     Aluno aluno; 
+//     if((arq = fopen("chamada.bin", "wb")) != NULL){
+//         printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno.nome);
+//         while(strcmp(aluno.nome, "fim")) {
+//             printf("Qual sua idade? "); scanf("%d", &aluno.idade);
+//             fwrite(&aluno, sizeof(Aluno), 1, arq); // as the first argument, you need to point to the first element of the structure (not the pointer to the structure itself!); as the second argument, you are allowed to pass the structure or its element as sizeof's argument 
+//             printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno.nome);
+//         }
+//         }
+// }
+
+// int main(){
+//     FILE *arq;
+//     Aluno aluno; 
+//     if((arq = fopen("chamada.bin", "wb")) != NULL){
+//         //printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno.nome);
+//         //while(strcmp(aluno.nome, "fim")) {
+//             //printf("Qual sua idade? "); scanf("%d", &aluno.idade);
+//             fread(&aluno, sizeof(Aluno), 1, arq); // as the first argument, you need to point to the first element of the structure (not the pointer to the structure itself!); as the second argument, you are allowed to pass the structure or its element as sizeof's argument 
+//             printf("Nome: %s\nIdade %d")
+//             //printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno.nome);
+//         //}
+//         }
+// }
+
+// int main() {
+//     FILE *arq;
+//     Aluno aluno[65];
+//     int i = 0;
+//     if((arq= fopen("chamada.bin", "wb")) != NULL){
+//         printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno[i].nome);
+//         while(strcmp(aluno[i].nome, "fim")){
+//             printf("Qual sua idade? "); scanf("%d", &aluno[i].idade);
+//             i++;
+//             printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno[i].nome);
+//         }
+//         if(i)
+//             fwrite(aluno, sizeof(Aluno), i, arq);
+//         fclose(arq);
+//     }
+// }
+
+// int main() {
+//     FILE *arq;
+//     Aluno aluno[65]; // make sure you won't need more than 65 bytes! 
+//     int i = 0;
+//     if((arq= fopen("chamada.bin", "wb")) != NULL){
+//         // printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno[i].nome);
+//         // while(strcmp(aluno[i].nome, "fim")){
+//         //     printf("Qual sua idade? "); scanf("%d", &aluno[i].idade);
+//         //     i++;
+//         //     printf("Qual o nome do aluno? "); scanf(" %99[^\n]", aluno[i].nome);
+//         // }
+//         fseek(arq, 0, SEEK_END);
+//         i = (int) ftell(arq) / sizeof(Aluno);
+//         fseek(arq, 0, SEEK_SET);
+//         fread(aluno, sizeof(Aluno), i, arq);
+//         fclose(arq);
+
+//         // showing the attendance list backwards
+
+//         while(i>=0){
+//             printf(("Nome: %s\nIdade: %d\n", aluno[i].nome, aluno[i].idade));
+//             i--;
+//         }
+
+
+//     }
+// }
+
+// // using dynamic allocation
+
+// int main() {
+//     FILE *arq;
+//     Aluno *aluno = NULL;
+//     int i = 0;
+//     if((arq= fopen("chamada.bin", "wb")) != NULL){
+        
+//         fseek(arq, 0, SEEK_END);
+//         i = (int) ftell(arq) / sizeof(Aluno);
+//         aluno = (Aluno *) malloc(sizeof(Aluno) * i);
+//         if(aluno != NULL){
+//             fseek(arq, 0, SEEK_SET);
+//             fread(aluno, sizeof(Aluno), i, arq);
+//             while(i>=0){
+//                 printf("Nome: %s\nIdade: %d\n", aluno[i].nome, aluno);
+//                 i--;
+//             }
+//         }
+//         else{
+//             printf("Falha na alocação!\n"); exit(1);
+//         }
+// }
+
+
+// leia os memos alunos, mas, em vez de idade, leia um vetor de tres notas. pare quando o nome for "fim". salve em um arquivo binário. modularize o código como quiser
+// construa uma página html com esse arquivo texto (lembrando que html é um arquivo texto). essa página html precisa conter o nome, as notas, a média e a situação (aprovado se média >=7)
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+	char nome[100];
+	float nota1;
+	float nota2;
+	float nota3;
+	float media;
+	char situacao[15];
+} Aluno;
+
+int main() {
+
+	FILE *arq;
+	Aluno aluno[65];
+	int i = 0;
+
+	if((arq= fopen("chamada.bin", "wb")) != NULL) { // opening the file in the binary format
+
+		printf("Qual o nome do aluno? ");
+		scanf(" %99[^\n]", aluno[i].nome);
+
+		while(strcmp(aluno[i].nome, "fim")) {
+
+			float vetor_notas[3];
+
+			printf("Quais foram as notas de %s nas provas? ", aluno[i].nome);
+			scanf("%f %f %f", &vetor_notas); // receiving the student's vector of grades
+
+			aluno[i].nota1 = vetor_notas[0]; // separating the student's grades
+			aluno[i].nota2 = vetor_notas[1];
+			aluno[i].nota3 = vetor_notas[2];
+			aluno[i].media = (aluno[i].nota1 + aluno[i].nota2 + aluno[i].nota3)/3;
+
+			if(aluno[i].media < 7) {
+				strncpy(aluno[i].situacao, "Reprovado", 15);
+			}
+
+			else {
+                strncpy(aluno[i].situacao, "Aprovado", 15);
+			}
+
+			printf("A primeira nota de %s foi %f, a segunda foi %f e a terceira foi %f. Logo, sua média (arredondada em duas casas decimais) é %.2f e sua situação é %s.\n", aluno[i].nome, aluno[i].nota1, aluno[i].nota2, aluno[i].nota3, aluno[i].media, aluno[i].situacao);
+
+			i++;
+
+			printf("Qual o nome do aluno? ");
+			scanf(" %99[^\n]", aluno[i].nome); // receiving the next student's name
+		}
+
+		fclose(arq);
+	}
+}
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+	char nome[100];
+	float nota1;
+	float nota2;
+	float nota3;
+	float media;
+	char situacao[15];
+} Aluno;
+
+int main() {
+
+	FILE *arq_binario;
+	FILE *arq_html;
+	Aluno aluno[65];
+	int i = 0;
+
+	if((arq_binario= fopen("chamada.bin", "wb")) != NULL && (arq_html= fopen("chamada.html", "wt")) != NULL) { // opening the file in the binary format
+
+		printf("Qual o nome do aluno? ");
+		scanf(" %99[^\n]", aluno[i].nome);
+
+		while(strcmp(aluno[i].nome, "fim")) {
+
+			float vetor_notas[3];
+
+			printf("Quais foram as notas de %s nas provas? ", aluno[i].nome);
+			scanf("%f %f %f", &aluno[i].nota1, &aluno[i].nota2, &aluno[i].nota3); // receiving the student's vector of grades
+
+			aluno[i].media = (aluno[i].nota1 + aluno[i].nota2 + aluno[i].nota3)/3;
+
+			if(aluno[i].media < 7) {
+				strncpy(aluno[i].situacao, "Reprovado", 15);
+			}
+
+			else {
+                strncpy(aluno[i].situacao, "Aprovado", 15);
+			}
+
+			printf("A primeira nota de %s foi %.2f, a segunda foi %.2f e a terceira foi %.2f. Logo, sua média (arredondada em duas casas decimais) é %.2f e sua situação é %s.\n", aluno[i].nome, aluno[i].nota1, aluno[i].nota2, aluno[i].nota3, aluno[i].media, aluno[i].situacao);
+
+			i++;
+
+			printf("Qual o nome do aluno? ");
+			scanf(" %99[^\n]", aluno[i].nome); // receiving the next student's name
+		}
+
+        if(i){
+             fwrite(aluno, sizeof(Aluno), i, arq_binario);
+        }
+        
+        for(i; i>=0; i--){
+            
+            fprintf(arq_html, "%s", aluno[i].nome);
+            fprintf(arq_html, "%.2f", aluno[i].nota1);
+            fprintf(arq_html, "%.2f", aluno[i].nota2);
+            fprintf(arq_html, "%.2f", aluno[i].nota3);
+            fprintf(arq_html, "%.2f", aluno[i].media);
+            fprintf(arq_html, "%s", aluno[i].situacao);
+            
+        }
+        
+        fclose(arq_binario);
+        fclose(arq_html);
+	}
+}
+
+
