@@ -262,10 +262,10 @@ int main(){
         }
     }
 
-    printf("%d %d %.2f %d ", cremosa.amp, cremosa.freq, cremosa.ener, cremosa_pontuacoes[max_idx_crem]);
+    printf("%d %d %.2f %d", cremosa.amp, cremosa.freq, cremosa.ener, cremosa_pontuacoes[max_idx_crem]);
     
     if(cremosa_venceu >= 1){
-    printf("WINNER ( ");
+    printf(" WINNER ( ");
     for(int i = 0; i<qtd_inim;i++){
     if(vencedor[i] == 'c'){
         printf("%d ", i+1);
@@ -282,10 +282,10 @@ int main(){
 
     for(int i=0; i<qtd_inim;i++){
 
-        printf("%d %d %.2f %d ", dados_inimigos[i].amp, dados_inimigos[i].freq, dados_inimigos[i].ener, dados_inimigos[i].pts);
+        printf("%d %d %.2f %d", dados_inimigos[i].amp, dados_inimigos[i].freq, dados_inimigos[i].ener, dados_inimigos[i].pts);
         
         if(vencedor[i] == 'i'){
-            printf("WINNER\n");
+            printf(" WINNER\n");
         }
 
         else{
