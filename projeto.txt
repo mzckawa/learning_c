@@ -1,0 +1,15 @@
+Codigo: 101
+Titulo: Desenvolvimento de um novo semicondutor à base de grafeno
+Orcamento: 150000.00
+Pesquisadores: Carlos Silva(Doutor), Ana Pereira(Mestre)
+---
+Codigo: 102
+Titulo: Impacto da inteligência artificial na educação básica
+Orcamento: 85000.50
+Pesquisadores: Bruna Costa(Doutora), Joao Alves(Mestre)
+---
+Codigo: 103
+Titulo: Análise de proteínas para combate a doenças degenerativas
+Orcamento: 220000.00
+Pesquisadores: Ricardo Mendes(Doutor)
+---
