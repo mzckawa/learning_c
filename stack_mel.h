@@ -37,14 +37,16 @@ int isFull(Stack pilha){
     }
 }
 
-int push(Stack pilha, int obj){
+Stack push(Stack pilha, int obj){
 
     pilha.topo++;
     pilha.items[pilha.topo] = obj;
+
+    return pilha;
     
 }
 
-void pop(Stack pilha){
+Stack pop(Stack pilha){
 
     pilha.topo--;
 
@@ -60,6 +62,8 @@ void pop(Stack pilha){
         pilha.items[i] = pilha_aux[i];
         }
     }
+
+    return pilha;
 }
 
 int top(Stack pilha){

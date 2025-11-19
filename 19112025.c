@@ -37,14 +37,16 @@ int isFull(Stack pilha){
     }
 }
 
-int push(Stack pilha, int obj){
+Stack push(Stack pilha, int obj){
 
     pilha.topo++;
     pilha.items[pilha.topo] = obj;
+
+    return pilha;
     
 }
 
-void pop(Stack pilha){
+Stack pop(Stack pilha){
 
     pilha.topo--;
 
@@ -60,6 +62,8 @@ void pop(Stack pilha){
         pilha.items[i] = pilha_aux[i];
         }
     }
+
+    return pilha;
 }
 
 int top(Stack pilha){
@@ -113,13 +117,14 @@ while(command != 0){
             printf("Qual inteiro voce quer inserir na stack? ");
             scanf(" %d", &objeto);
             printf("\nInserindo numero %d na stack!\n", objeto);
-            push(stack, objeto);
+            stack = push(stack, objeto);
             printf("Numero inserido!\n");
             break;
 
         case 4:
             if (stack.topo >= 0){
-            pop(stack);
+            printf("Retirando elemento da pilha!\n");
+            stack = pop(stack);
             }
             else{
                 printf("Pilha vazia!\n");
@@ -128,15 +133,15 @@ while(command != 0){
 
         case 5:
             if (stack.topo >= 0){
-            printf("O valor do topo da pilha é %d\n", top(stack));
+            printf("Valor do topo da pilha: %d\n", top(stack));
             }
             else{
-                printf("Pilha vazia!");
+                printf("Pilha vazia!\n");
             }
             break;
     }
 
-    printf("Qual o proximo comando? ");
+    printf("\nQual o proximo comando? ");
     scanf(" %d", &command);
     printf("\n");
 
