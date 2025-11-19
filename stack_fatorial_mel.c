@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stack_mel.h>
+#include "stack_mel.h"
 
 int fatorial(Stack pilha){
 
-    printf("Entrou no fatorial!\n");
     int resultado = 1;
     int topo_orig = pilha.items[pilha.topo];
     for (int i = pilha.topo; i>0; i--){
@@ -14,8 +13,7 @@ int fatorial(Stack pilha){
         
     }
 
-    printf("Fatorial calculado! Vamos imprimi-lo!\n");
-    printf("O fatorial de %d é %d", topo_orig, resultado);
+    printf("Fatorial de %d: %d", topo_orig, resultado);
 
     //return resultado;
 }
@@ -82,7 +80,7 @@ int main(){
                 }
                 break;
 
-            case 6:
+            case 5:
                 if (stack.topo >= 0){
                 printf("Valor do topo da pilha: %d\n", top(stack));
                 }
@@ -91,11 +89,9 @@ int main(){
                 }
                 break;
 
-            case 5:
-                printf("vamos entrar no fatorial!\n");
-                //fatorial(stack);
-                //printf("Passamos do fatorial!\n");
-                //break;
+            case 6:
+                fatorial(stack);
+                break;
                 
         }
 
@@ -108,3 +104,4 @@ int main(){
     printf("Encerrando o programa!\n");
  
 }
+
