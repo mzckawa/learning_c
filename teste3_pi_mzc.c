@@ -100,14 +100,14 @@ int main() {
 
     while(strcmp(expressao_atual, "EOF") != 0){
 
-        printf("Qtd variaveis definidas ao entrar no while %d\n", qtd_variaveis_definidas);
+        // printf("Qtd variaveis definidas ao entrar no while %d\n", qtd_variaveis_definidas);
     for(int i = 0; i<tamanho_expressao_atual; i++){
 
-        printf("Entrou no for!\n");
+        // printf("Entrou no for!\n");
 
         char* carac_atual = &expressao_atual[i];
 
-        printf("Caractere atual: %c\n", *carac_atual);
+        // printf("Caractere atual: %c\n", *carac_atual);
 
         if(*carac_atual == ';'){
             break; // passa para o print da expressão, fora do laço for
@@ -126,9 +126,10 @@ int main() {
             }
 
             if(flag_esta_na_lista == 0){ // se ela não está na lista, damos o push 
+
                 variaveis_definidas[qtd_variaveis_definidas] = *carac_atual;
                 qtd_variaveis_definidas++;
-                printf("%c não estava na lista! vamos adicionar\n", *carac_atual);
+
             }
 
             else if(flag_esta_na_lista){ // se está na lista, vamos colocá-la na pilha de operandos, substituindo pelo seu já conhecido valor
@@ -136,7 +137,7 @@ int main() {
                 push(operandos_expressao_atual, valor_variaveis_definidas[idx_lista]);
                 qtd_operandos_expressao_atual++;
                 flag_esta_na_lista = 0;
-                printf("%c já estava na lista! nao precisamos adicionar\n", *carac_atual);
+                //printf("%c já estava na lista! nao precisamos adicionar\n", *carac_atual);
 
             }
             
@@ -145,7 +146,8 @@ int main() {
         else if (*carac_atual != '+' && *carac_atual != '*' && *carac_atual != '-' && *carac_atual != '='){ // se entrar aqui, é porque é um inteiro
     
             int operando = atoi(carac_atual);
-            push(operandos_expressao_atual, *carac_atual);
+            //printf("Encontramos número %d\n", operando);
+            push(operandos_expressao_atual, operando);
             qtd_operandos_expressao_atual++;
 
         }
@@ -189,13 +191,13 @@ int main() {
     } // fim do for(int i = 0; i<tamanho_expressao_atual; i++)
 
     if(qtd_operandos_expressao_atual == 1){
-        res = operandos_expressao_atual->items[0];
-        printf("O resultado da última operação é %d\n", res);
+        res = operandos_expressao_atual->items[operandos_expressao_atual->top];
+        //printf("O resultado da última operação é %d\n", res);
     }
 
-    printf("Saiu do for!\n");
+    //printf("Saiu do for!\n");
 
-    printf("Qtd variaveis definidas após sair do for %d\n", qtd_variaveis_definidas);
+    //printf("Qtd variaveis definidas após sair do for %d\n", qtd_variaveis_definidas);
 
     // acabada a expressão, vamos colocar o resultado das operações como o valor da última variável nova encontrada 
     valor_variaveis_definidas[qtd_variaveis_definidas - 1] = res;
