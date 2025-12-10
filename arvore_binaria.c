@@ -82,6 +82,17 @@ void posOrder(Node* root, int* flag_first){
     }
 }
 
+void liberar_arvore(Node* root) {
+
+    if (root == NULL) {
+        return;
+    }
+
+    liberar_arvore(root->left);
+    liberar_arvore(root->right);
+    free(root);
+}
+
 int main(){
 
     Node* root = NULL;
@@ -114,6 +125,9 @@ int main(){
     posOrder(root, &is_first);
 
     printf("\n");
+
+    liberar_arvore(root);
+    root = NULL;
 
     return 0;
 }
